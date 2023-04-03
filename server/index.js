@@ -8,9 +8,13 @@ const allRoutes = require("./routes/index.js");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const corsOptions = {
+  credentials: true,
+  ///..other options
+};
 
 // middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser());
