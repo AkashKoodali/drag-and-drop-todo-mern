@@ -1,6 +1,8 @@
 const Task = require("../models/Task.js");
 const createError = require("../utils/createError.js");
 
+
+// Create a todo 
 exports.createTask = async (req, res, next) => {
   const newTask = new Task({
     title: req.body.title,
@@ -15,13 +17,12 @@ exports.createTask = async (req, res, next) => {
   }
 };
 
+// update the todo
 exports.updateTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.taskId).exec();
-    if (!task)
-      return next(createError({ status: 404, message: "Task not found" }));
-    if (task.user.toString() !== req.user.id)
-      return next(createError({ status: 401, message: "It's not your todo." }));
+    if (!task) return next(createError({ status: 404, message: "Task not found" }));
+    if (task.user.toString() !== req.user.id) return next(createError({ status: 401, message: "It's not your todo." }));
 
     const updatedTask = await Task.findByIdAndUpdate(
       req.params.taskId,
@@ -37,15 +38,7 @@ exports.updateTask = async (req, res, next) => {
   }
 };
 
-exports.getAllTasks = async (req, res, next) => {
-  try {
-    const tasks = await Task.find({});
-    return res.status(200).json(tasks);
-  } catch (err) {
-    return next(err);
-  }
-};
-
+// get the current signin user tasks
 exports.getCurrentUserTasks = async (req, res, next) => {
   try {
     const tasks = await Task.find({ user: req.user.id });
@@ -55,6 +48,18 @@ exports.getCurrentUserTasks = async (req, res, next) => {
   }
 };
 
+// get the one task 
+exports.getOneTask = async (req, res, next) => {
+  const {_id} = req.params
+  try {
+    const task = await Task.findById({_id});
+    return res.json({task});
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+// delete task
 exports.deleteTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.taskId);
@@ -68,11 +73,3 @@ exports.deleteTask = async (req, res, next) => {
   }
 };
 
-exports.deleteAllTasks = async (req, res, next) => {
-  try {
-    await Task.deleteMany({ user: req.user.id });
-    return res.json("All Todo Deleted Successfully");
-  } catch (err) {
-    return next(err);
-  }
-};

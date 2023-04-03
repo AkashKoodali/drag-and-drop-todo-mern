@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User.js");
 const createError = require("../utils/createError.js");
 
+
+// Login
 exports.login = async (req, res, next) => {
   if (!req.body.email || !req.body.password) {
     return next(
@@ -49,6 +51,7 @@ exports.login = async (req, res, next) => {
   }
 };
 
+// Register
 exports.register = async (req, res, next) => {
   if (!req.body.name || !req.body.email || !req.body.password) {
     return next(
@@ -70,17 +73,19 @@ exports.register = async (req, res, next) => {
     });
 
     await newUser.save();
-    return res.status(201).json("New User Created");
+    return res.status(200).json("New User Created");
   } catch (err) {
     return next(err);
   }
 };
 
+// Logout
 exports.logout = async (req, res) => {
   res.clearCookie("access_token");
   return res.status(200).json({ message: "logout success" });
 };
 
+// Auth validation
 exports.isLoggedIn = async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) {

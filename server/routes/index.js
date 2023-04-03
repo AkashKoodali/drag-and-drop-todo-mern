@@ -6,8 +6,13 @@ const tasksRoutes = require( './tasks.js');
 
 const router = express.Router();
 
+// authentication
 router.use('/auth', authRoutes);
+
+// for user actions
 router.use('/users', checkAuth, usersRoutes);
+
+// for task actions
 router.use('/tasks', checkAuth, tasksRoutes);
 
 module.exports = router;

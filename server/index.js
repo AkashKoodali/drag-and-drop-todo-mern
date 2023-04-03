@@ -9,7 +9,7 @@ const allRoutes = require("./routes/index.js");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// middleware
+// middlewares
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
