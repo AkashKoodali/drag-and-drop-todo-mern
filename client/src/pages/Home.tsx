@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import TodoList from "../components/TodoList";
 import { DragDropContext, DraggableId, DropResult } from "react-beautiful-dnd";
 import { toast } from "react-hot-toast";
-import axios from "axios";
+import axios from "../utils/axios";
 
 type Props = {};
 

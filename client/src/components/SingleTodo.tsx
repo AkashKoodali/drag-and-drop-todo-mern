@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { Todo } from "../models/models";
 import { Draggable } from "react-beautiful-dnd";
-import axios from "axios";
+import axios from "../utils/axios";
 import { toast } from "react-hot-toast";
 
 const SingleTodo: React.FC<{
