@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -9,6 +9,7 @@ const allRoutes = require("./routes/index.js");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const corsOptions = {
+  origin: "http://localhost:3000/", //my deployed frontend https://kreddit.vercel.app
   credentials: true,
   ///..other options
 };
