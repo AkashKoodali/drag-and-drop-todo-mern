@@ -7,7 +7,6 @@
     position: fixed;
     background: #f6f2ea;
 }
-
 .title {
 	font-size: 3rem;  
     font-weight: 800;
@@ -79,3 +78,38 @@ button {
     color: white;
 }
 
+@media screen and (max-width: 65em) {
+   
+    .title {
+        font-size: 1.5rem;  
+        font-weight: 800;
+        font-style: normal;
+    }
+
+    .authForm {
+        width: 80%;
+        padding: 30px 30px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #ffffff;
+        border-radius: 20px;
+        margin-top: 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #cccccc;
+    box-shadow: inset;
+    background-color: white;
+    height: 25px;
+    outline: none;
+}
+    
+}
