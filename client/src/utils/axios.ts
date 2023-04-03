@@ -5,6 +5,7 @@ const baseURL = "https://todo-backend-wp1o.onrender.com"
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
+  withCredentials: true
 });
 
 axios.interceptors.response.use(

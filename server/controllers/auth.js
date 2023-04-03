@@ -43,7 +43,8 @@ exports.login = async (req, res, next) => {
     return res
       .cookie("access_token", token, {
         httpOnly: true,
-        secure: true,
+        secure: __prod__, // cookie only works in https
+        sameSite: "none", // csrf
       })
       .status(200)
       .json({ name: user.name, email: user.email, message: "login success" });
